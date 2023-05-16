@@ -14,7 +14,7 @@ while True:
     # Convert to RGB color space
     rgb = cv.cvtColor(flipped, cv.COLOR_BGR2RGB)
 
-    red_mask = cv.inRange(rgb, (150, 0, 0), (255, 100, 50))  # Threshold for red color
+    red_mask = cv.inRange(rgb, (120, 0, 0), (255, 70, 100))  # Threshold for red color
 
     if accumulator_frame is None:
         accumulator_frame = np.zeros(fs, dtype=np.uint8)
@@ -33,8 +33,9 @@ while True:
             cy2 = int(moments2['m01'] / moments2['m00'])
 
             dist = np.sqrt((cx2 - cx1) ** 2 + (cy2 - cy1) ** 2)
-
-            if dist < 50:
+            print(dist)
+            if dist < 5:
+                print("hi")
                 capture_image = True
 
     if capture_image:
